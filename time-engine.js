@@ -5,7 +5,7 @@
  */
 "use strict";
 
-var audioContext = require("audio-context");
+var defaultAudioContext = require("audio-context");
 
 /**
  * @class TimeEngine
@@ -33,7 +33,8 @@ var TimeEngine = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};r
   /**
    * @constructor
    */
-  function TimeEngine() {
+  function TimeEngine() {var audioContext = arguments[0];if(audioContext === void 0)audioContext = defaultAudioContext;
+    this.audioContext = audioContext;
 
     /**
      * Current master
@@ -61,7 +62,7 @@ var TimeEngine = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};r
    * This function provided by the master.
    */
   function $currentTime_get$0() {
-    return audioContext.currentTime;
+    return this.audioContext.currentTime;
   }
 
   /**
